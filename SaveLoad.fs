@@ -12,8 +12,7 @@ let guardarPartida state =
         File.WriteAllText(archivoGuardado, datos)
         state 
     with
-    | _ -> state // Si hay un error (ej. falta de permisos), evitamos que el juego crashee
-
+    | _ -> state 
 let cargarPartida state =
     try
         if File.Exists(archivoGuardado) then
@@ -29,6 +28,6 @@ let cargarPartida state =
                 Pantalla = Jugando
                 RedibujarPantalla = true }
         else
-            state // Si el archivo no existe, no hace nada
+            state 
     with
     | _ -> state
