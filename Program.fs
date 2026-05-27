@@ -5,7 +5,7 @@ open System.Threading
 open ProyectoJuego.Types
 open ProyectoJuego.Utils
 open ProyectoJuego.Input
-open ProyectoJuego.Logic // ¡Aquí traemos toda la física del juego!
+open ProyectoJuego.Logic
 
 let redibujarPantalla state =
     if state.RedibujarPantalla then
@@ -18,7 +18,7 @@ let redibujarPantalla state =
             dibujarAlien state
             dibujarEnemigo state
             
-            // Dibujar los misiles aliados y enemigos
+            
             state.Misiles |> List.iter (fun m -> mostrarMensaje m.X m.Y ConsoleColor.Cyan "-")
             state.MisilesEnemigos |> List.iter (fun m -> mostrarMensaje m.X m.Y ConsoleColor.Red "<")
             
@@ -32,10 +32,10 @@ let redibujarPantalla state =
     else state
 
 let rec mainLoop state =
-    // 1. Sentidos: Leer el teclado
+    
     let estadoConInput = procesarTeclado state
     
-    // 2. Cerebro: Procesar la física (¡Solo si estamos en la pantalla de juego!)
+    
     let estadoActualizado =
         match estadoConInput.Pantalla with
         | Jugando ->
@@ -51,10 +51,10 @@ let rec mainLoop state =
             |> resetEnemigo
         | _ -> estadoConInput
         
-    // 3. Vista: Dibujar en la consola
+    
     let estadoFinal = redibujarPantalla estadoActualizado
 
-    // 4. Ciclo: Repetir todo
+    
     if estadoFinal.ProgramState <> Terminated then
         Thread.Sleep 25
         mainLoop estadoFinal
