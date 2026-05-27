@@ -1,7 +1,7 @@
 module ProyectoJuego.Utils
 
 open System
-open ProyectoJuego.Types // Importante: para que reconozca 'State'
+open ProyectoJuego.Types 
 
 let mostrarMensaje x y color (msg:string) =
     if x >= 0 && x < Console.BufferWidth && y >= 0 && y < Console.BufferHeight then
