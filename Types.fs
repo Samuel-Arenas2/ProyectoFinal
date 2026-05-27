@@ -1,4 +1,4 @@
-module ProyectoJuego.Types // Así es como lo quiere el profesor
+module ProyectoJuego.Types 
 
 open System
 
