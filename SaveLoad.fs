@@ -6,15 +6,15 @@ open ProyectoJuego.Types
 let archivoGuardado = "partida.txt"
 
 let guardarPartida state =
-    try
+  
         
         let datos = $"{state.Vidas},{state.Puntos}"
         File.WriteAllText(archivoGuardado, datos)
         state 
-    with
-    | _ -> state 
+    
+
 let cargarPartida state =
-    try
+   
         if File.Exists(archivoGuardado) then
             
             let datos = File.ReadAllText(archivoGuardado).Split(',')
@@ -29,5 +29,4 @@ let cargarPartida state =
                 RedibujarPantalla = true }
         else
             state 
-    with
-    | _ -> state
+
